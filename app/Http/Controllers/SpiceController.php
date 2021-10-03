@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Storage;
 class SpiceController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return response()->json(Spice::all());
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -32,6 +42,7 @@ class SpiceController extends Controller
             [
                 'name' => $request['name'],
                 'description' => $request['description'],
+                'province' => $request['province_id']
             ]
         );
 
@@ -39,6 +50,8 @@ class SpiceController extends Controller
         foreach ($request['photo_path'] as $path) {
             $spice->photos()->save(new SpicePhoto(['photo_url' => $path]));
         }
+
+        $spice->province()->attach($request['province_id']);
 
         return response()
             ->json(['message' => 'New Spice is successfully requested, please wait for admin to approve'], 200);
@@ -94,11 +107,18 @@ class SpiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Spice $spice
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Spice $spice)
     {
-        //
+        $spice->like()->detach();
+        $spice->comment()->detach();
+        $spice->province()->detach();
+        $spice->photos()->each(function ($photo) {
+            $photo->delete();
+        });
+        $spice->delete();
+        return response()->json(["message" => 'spice deleted']);
     }
 }

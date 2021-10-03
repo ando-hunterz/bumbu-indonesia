@@ -11,6 +11,8 @@ class Province extends Model
 
     protected $fillable = ['name'];
 
+    protected $appends = ['spices'];
+
     /**
      * The spice that belong to the Province
      *
@@ -19,5 +21,10 @@ class Province extends Model
     public function spice()
     {
         return $this->belongsToMany(Spice::class);
+    }
+
+    public function getSpicesAttribute()
+    {
+        return $this->spice()->get()->map->only(['id','name']);
     }
 }

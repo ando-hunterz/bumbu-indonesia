@@ -26,7 +26,8 @@ class Spice extends Model
     protected $appends = [
         'photo',
         'comments',
-        'likes'
+        'likes',
+        'provinces'
     ];
 
     public function photos()
@@ -62,5 +63,10 @@ class Spice extends Model
     public function comment()
     {
         return $this->belongsToMany(Visitor::class, 'comment_visitor')->withPivot('comment');
+    }
+
+    public function getProvincesAttribute()
+    {
+        return $this->province()->get()->map->only('id','name');
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\SpiceController;
 use App\Http\Controllers\SpicePhotoController;
 use App\Http\Controllers\VisitorController;
@@ -35,4 +36,6 @@ Route::middleware('auth.api')->group(function () {
     Route::resource('/spice/{spice}/like', LikeController::class);
 
     Route::resource('/spice/{spice}/comment', CommentController::class);
+
+    Route::resource('/province', ProvinceController::class);
 });

@@ -14,29 +14,9 @@ class ProvinceController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Province::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -46,7 +26,7 @@ class ProvinceController extends Controller
      */
     public function show(Province $province)
     {
-        //
+        return response()->json($province);
     }
 
     /**
