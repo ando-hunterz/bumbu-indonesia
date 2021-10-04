@@ -15,7 +15,9 @@ class SpicePhoto extends Model
      * @var string[]
      */
     protected $fillable = [
-        'photo_url'
+        'photo_url',
+        'size',
+        'filename'
     ];
 
     public function spice()

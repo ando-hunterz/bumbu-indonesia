@@ -17,7 +17,8 @@ class Visitor extends Model
 
     protected $fillable = [
         'name',
-        'ip'
+        'ip',
+        'avatar_url'
     ];
 
     protected $appends = [

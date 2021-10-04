@@ -38,17 +38,19 @@ class SpiceController extends Controller
      */
     public function store(StoreSpiceRequest $request)
     {
+        dd($request['photo_path']);
         $spice = Spice::create(
             [
                 'name' => $request['name'],
                 'description' => $request['description'],
-                'province' => $request['province_id']
+                'province' => $request['province_id'],
+                'name_translate' => $request['name_translate']
             ]
         );
 
-
+        
         foreach ($request['photo_path'] as $path) {
-            $spice->photos()->save(new SpicePhoto(['photo_url' => $path]));
+            $spice->photos()->save(new SpicePhoto(['photo_url' => $path['photo_url'], 'filename' => $path['filename'], 'size' => $path['size']]));
         }
 
         $spice->province()->attach($request['province_id']);

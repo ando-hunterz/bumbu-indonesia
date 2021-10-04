@@ -16,6 +16,7 @@ class CreateSpicesTable extends Migration
         Schema::create('spices', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('name_translate');
             $table->string('description');
             $table->boolean('is_approved')->default('0');
             $table->timestamps();

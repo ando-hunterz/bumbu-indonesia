@@ -31,7 +31,8 @@ class VisitorController extends Controller
         $visitor = Visitor::create(
             [
                 'ip' => $request->ip(),
-                'name' => $request['name']
+                'name' => $request['name'],
+                'avatar_url' => "https://avatars.dicebear.com/api/avataaars/".$request['name'].".svg"
             ]
         );
 

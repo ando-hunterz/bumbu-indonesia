@@ -20,7 +20,8 @@ class Spice extends Model
     protected $fillable = [
         'name',
         'description',
-        'is_approved'
+        'is_approved',
+        'name_translate'
     ];
 
     protected $appends = [

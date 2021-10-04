@@ -23,11 +23,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/landing", [LandingController::class, 'index']);
 
-Route::resource('/visitor', VisitorController::class)->only(['index', 'create']);
+Route::resource('/visitor', VisitorController::class)->only(['index', 'store']);
 
 Route::middleware('auth.api')->group(function () {
 
-    Route::resource('/visitor', VisitorController::class)->except(['index', 'create']);
+    Route::resource('/visitor', VisitorController::class)->except(['index', 'store']);
 
     Route::resource('/spice', SpiceController::class);
 

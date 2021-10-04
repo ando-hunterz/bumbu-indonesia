@@ -16,6 +16,8 @@ class CreateSpicePhotosTable extends Migration
         Schema::create('spice_photos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('spice_id')->constrained('spices');
+            $table->string('size');
+            $table->string('filename');
             $table->string('photo_url');
             $table->timestamps();
         });

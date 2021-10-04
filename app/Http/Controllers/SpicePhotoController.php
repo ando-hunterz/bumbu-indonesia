@@ -38,18 +38,21 @@ class SpicePhotoController extends Controller
     public function store(Request $request)
     {
         if ($request->file('photo')) {
-            $file_count = 1;
-            $path = [];
             $file_name = Carbon::now()->format("Y-m-d-H-i-s") .'.'. $request->file('photo')->getClientOriginalExtension();
-            Storage::putFileAs(
+            $path = Storage::putFileAs(
                 'spice',
                 $request->file('photo'),
                 $file_name
             );
-            $path = Storage::path('spice\\' . $file_name);
+            $path = Storage::url($path);
+            $photo = [
+                "photo_url" => $path,
+                "filename" => $file_name,
+                "size" => $request->file('photo')->getSize()
+            ];
         };
 
-        return response()->json(["path" => $path]);
+        return response()->json(["photo" => $photo]);
     }
 
     /**

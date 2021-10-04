@@ -25,8 +25,10 @@ class StoreSpiceRequest extends FormRequest
     {
         return [
             'name' => ['required','alpha'],
-            'description' => ['required', 'alpha_dash'],
-            'photo_path' => ['required','array']
+            'description' => ['required', 'string'],
+            'photo_path' => ['required','array'],
+            'name_translate' => ['required','alpha'],
+            'province_id' => ['required','numeric']
         ];
     }
 }

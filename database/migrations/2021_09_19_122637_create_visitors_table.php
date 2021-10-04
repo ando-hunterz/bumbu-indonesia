@@ -17,6 +17,7 @@ class CreateVisitorsTable extends Migration
             $table->id();
             $table->string('ip');
             $table->string('name');
+            $table->string('avatar_url');
             $table->timestamps();
         });
     }

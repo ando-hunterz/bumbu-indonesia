@@ -36,7 +36,7 @@ class CommentController extends Controller
     public function store(Spice $spice, Request $request)
     {
         $request->validate([
-            'comment' => 'required|alpha_dash'
+            'comment' => 'required|string'
         ]);
         
         if ($spice->comment()->where('visitor_id', '=', $request->header('x-visitor-id'))->count() == 1) {
