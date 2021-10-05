@@ -17,7 +17,7 @@ class CreateSpicesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('name_translate');
-            $table->string('description');
+            $table->longText('description');
             $table->boolean('is_approved')->default('0');
             $table->timestamps();
         });

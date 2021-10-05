@@ -7,7 +7,7 @@ trait HasPhoto
 
     public function getPhotoAttribute()
     {
-        return $this->photos()->select('photo_url')->get();
+        return $this->photos()->select('photo_url','size','filename')->get();
     }
 
 }
