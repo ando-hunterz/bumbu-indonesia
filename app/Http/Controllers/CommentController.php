@@ -48,7 +48,7 @@ class CommentController extends Controller
 
         $spice->comment()->attach($request->header('x-visitor-id'), ['comment' => $request['comment']]);
 
-        return response()->json(["message" => 'Comment is sucessfully added']);
+        return response()->json(["user" => $spice->comment()->where('visitor_id', '=', $request->header('x-visitor-id'))->first()->only('avatar_url')]);
     }
 
     /**
